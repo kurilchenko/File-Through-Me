@@ -1,0 +1,268 @@
+@import "bourbon/bourbon";
+@import "globalVars";
+@import "globalMixins";
+
+#app {
+	header {
+		position: fixed;
+		top: 0;
+		left: 0;
+		line-height: 3.2em;
+		padding: 0 1em;	
+		font-size: 0.8em;	
+		z-index: 3;
+	}
+}
+
+.uploadArea, .files {
+	width: 50%;
+	height: 100%;
+}
+
+.uploadArea.fullscreen {
+	width: 100%;
+	height: 100%;
+}
+
+.uploadArea {
+	position: fixed;
+	z-index: 2;
+	transition: width 1s ease, height 1s ease;
+}
+
+.files {
+	position: relative;
+	float: right;
+	z-index: 1;
+}
+
+$shadowColor: rgba(0,0,0,0.3);
+
+.uploadArea {
+	background-color: #FAFAFA;
+	text-align: center;
+	box-shadow: 1px 0 5px $shadowColor;
+
+	h1 {
+		position: absolute;
+		width: 100%;
+		bottom: 0;
+	}
+
+	h2 {
+		display: inline;
+		margin: 0;
+		font-size: 3vw;
+		cursor: default;
+		font-weight: 300;
+		@include user-select(none);
+
+		a {
+			border-bottom-style: solid;
+			border-bottom-width: 1px;
+		}
+	}
+
+	.unavailable {
+		text-decoration: line-through;
+		opacity: 0.5;
+	}
+
+	.inputWrapper {
+		display: none;
+		position: absolute;
+		width: 100%;
+		left: 0;
+		bottom: 0;
+
+		input {
+			height: 3em;
+		}
+	}
+
+	.center {
+		position: relative;
+		top: 50%;
+		@include transform(translateY(-50%));
+	}
+}
+
+.uploadArea > .wrapper {
+	height: 100%;
+}
+
+.files {
+	ul {
+		li {
+			position: relative;
+			border-bottom: 1px solid #E0E0E0;
+
+			.link {
+				background-color: #fff;
+
+				.thumbnail {
+					display: inline-block;
+					width: 128px;
+					height: 128px;
+					margin-right: 0.5em;
+					vertical-align: middle;
+					background-repeat: no-repeat;
+					background-position: center center;
+				}
+			}
+
+			a {
+				transition: background-color 0s;
+			}
+
+			.link, .file {
+				display: block;
+				padding: 1em;
+			}
+
+			.direct {
+				position: absolute;
+				top: 0;
+				right: 0;
+				width: 6em;
+				height: 100%;
+				background-color: #fff;
+			}
+
+			img {
+				display: inline-block;
+				vertical-align: middle;
+				margin-right: 0.5em;
+			}
+		}
+
+		li:hover .link, li:hover .direct {
+			background-color: #E3F2FD;
+		}
+	}
+}
+
+.files::after {
+	clear: both;
+    content: "";
+    display: block;
+}
+
+.progress-wrapper {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+
+.progress {
+	position: relative;
+	display: none;
+	opacity: 0;
+	width: 100%;
+	height: 100%;
+	transition: opacity 0.3s ease;
+}
+
+.progress-fullscreen > .progress {
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+.progress-fullscreen.solid > .progress {
+	background-color: #fff;
+}
+
+.uploading .progress {
+	display: block;
+	opacity: 1;
+}
+
+.uploading .progress::after {
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	background-size: $stripesSize $stripesSize;
+	@include background-image(linear-gradient(
+		-45deg, 
+		rgba(black, 0.1)  25%, 
+		transparent       25%, 
+		transparent       50%, 
+		rgba(black, 0.1)  50%, 
+		rgba(black, 0.1)  75%, 
+		transparent       75%, 
+		transparent
+	));  
+	@include animation(uploading-animation 3s linear infinite);
+}
+
+#panelContainer {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 999;
+}
+
+.panel {
+	position: absolute;
+	min-width: 15em;
+	margin-top: 1em;
+	margin-left: 1em;
+	padding: 0.5em;
+	box-shadow: 0 0 10px $shadowColor;
+	background-color: #fff;
+	z-index: 999;
+	pointer-events: none;
+
+	p {
+		margin-top: 0;
+	}
+
+	input {
+		width: 100%;
+		box-sizing: border-box;
+	}
+}
+
+@include keyframes(uploading-animation) {
+	from { 
+		background-position: 0 0; 
+	}
+	to   { 
+		background-position: $stripesSize*2 $stripesSize; 
+	}
+}
+
+@include narrow-window {
+	.uploadArea, .files {
+		width: 100%;
+		float: none;
+	}
+
+	.uploadArea {
+		top: 0;
+		height: 5em;
+		box-shadow: 0 1px 5px $shadowColor;
+
+		h1 {
+			display: none;
+		}
+
+		h2 {
+			font-size: 1.6em;
+
+			br {
+				display: none;
+			}
+		}
+	}
+
+	.files {
+		margin-top: 5em;
+	}
+}

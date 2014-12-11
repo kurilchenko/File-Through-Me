@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>File Through Me</title>
+		<link rel="stylesheet" type="text/css" href="assets/css/main.css">
+		<script src="//cdnjs.cloudflare.com/ajax/libs/dropbox.js/0.10.2/dropbox.min.js"></script>
+		<script type="text/javascript" src="assets/js/main.js"></script>
+	</head>
+	<body>
+		<div id="landing" class="screen">
+			<header>
+				<h1 class="logo">
+					<div class="tube-logo">
+						<div>
+							<div class="l"></div>
+							<div class="m"></div>
+							<div class="r"></div>
+							<div class="r2"></div>
+						</div>
+					</div><span class="name">File Through Me</span>
+				</h1>
+			</header>
+			<section class="hero">
+				<h2>Send people URLs to your files like super–fast.</h2><br>
+				<h3>Just drag & drop your file on this site and get a direct URL into the clipboard.</h3><br>
+				<a href="#" class="button dropbox" id="signInButton"><span>Sign in with Dropbox</span></a>
+			</section>
+			<footer>
+				<ul>
+					<li>Created by <a href="http://www.kurilchenko.com">Dmitry Kurilchenko</a></li>
+					<li><a href="#">Source code</a> (MIT License)</li>
+					<li>Powered by <a href="http://dropbox.com/">Dropbox</a></li>
+				</ul>
+			</footer>
+			<div id="loadingScreen" class="progress-fullscreen solid uploading">
+				<div class="progress"></div>
+			</div>			
+		</div>
+		<div id="appContainer"></div>
+		<div id="panelContainer"></div>
+	</body>
+</html>

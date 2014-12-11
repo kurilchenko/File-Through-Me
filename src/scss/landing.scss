@@ -1,0 +1,87 @@
+@import "bourbon/bourbon";
+@import "globalVars";
+@import "globalMixins";
+
+#landing {
+	position: relative;
+	text-align: center;
+
+	header {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+
+		.logo {
+			font-size: 1.6em;
+		}
+	}
+
+	.hero {
+		position: relative;
+		top: 50%;
+		@include transform(translateY(-50%));
+		margin: 0 2em;
+
+		h1, h2, h3, h4 {
+			display: inline-block;
+		}
+
+		h2 {
+			font-size: 3em;
+			margin: 0;
+		}
+
+		h3 {
+			font-size: 1.25em;
+		}
+
+		.button {
+			display: inline-block;
+			margin-top: 1em;
+			padding-right: 1.3em;
+			color: #fff;
+			font-size: 1.1em;
+			@include user-select(none);
+		}
+
+		.button.dropbox {
+			background-color: #007ee5;
+
+			$iconSize: 4em;
+
+			span::before {
+				content: "";
+				display: inline-block;
+				width: $iconSize;
+				height: $iconSize;
+				vertical-align: middle;
+				background: url('../images/icons/dropbox-logos.pdf_dropbox-glyph-white.svg');
+				background-size: $iconSize $iconSize;
+			}
+		}
+
+		.button.dropbox:hover {
+			background-color: #0086F4;
+		}
+	}
+
+	footer {
+		position: absolute;
+		width: 100%;
+		bottom: 0;
+		left: 0;
+
+		ul {
+			margin: 1em 2em;
+
+			li {
+				display: inline-block;
+			}
+
+			li::after {
+				content: ".";
+			}
+		}
+	}
+}

@@ -1,0 +1,9 @@
+{
+  "name": "File Through Me",
+  "description": "Send people URLs to your files like super-fast",
+  "dependencies": {
+    "browserify": "~6.3.x",
+    "gulp": "3.8.x",
+    "react": "0.12.x"
+  }
+}
